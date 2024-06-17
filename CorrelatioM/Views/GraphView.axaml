@@ -1,0 +1,89 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CorrelatioM.ViewModels"
+             xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CorrelatioM.Views.GraphView"
+             x:DataType="vm:GraphViewModel"
+             x:CompileBindings="True">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <Grid RowDefinitions="auto,*, auto">
+    <TextBlock Grid.Row="0"
+               Text="GRAPH VIEW"
+               FontSize="24"
+               HorizontalAlignment="Stretch"
+               TextAlignment="Center"/>
+    <ScottPlot:AvaPlot Name="mainPlot"
+                       Grid.Row="1" />
+    <Grid Name="gridExport"
+          IsVisible="False"
+          Grid.Row="2"
+          ColumnDefinitions="*,*,*,*"
+          RowDefinitions="auto, auto, auto"
+          Margin="5">
+      <TextBlock Grid.ColumnSpan="4"
+                 Grid.Column="0"
+                 Grid.Row="0"
+                 Text="Export graph"
+                 HorizontalAlignment="Stretch"
+                 TextAlignment="Center"
+                 FontStyle="Italic"
+                 Margin="0 5"/>
+      <TextBlock Grid.Column="0"
+                 Grid.Row="1"
+                 Text="Width (px):"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 TextAlignment="Center"
+                 Margin="0 5"/>
+      <NumericUpDown Grid.Column="1"
+                     Grid.Row="1"
+                     Value="{CompiledBinding ExportWidth}"
+                     Increment="1"
+                     Minimum="1"
+                     FormatString="0"
+                     Margin="5 5"/>
+      <TextBlock Grid.Column="2"
+                 Grid.Row="1"
+                 Text="Height (px):"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 TextAlignment="Center"
+                 Margin="0 5"/>
+      <NumericUpDown Grid.Column="3"
+                     Grid.Row="1"
+                     Value="{CompiledBinding ExportHeight}"
+                     Increment="1"
+                     Minimum="1"
+                     FormatString="0"
+                     Margin="5 5"/>
+      <Button Name="ExportAsPng"
+              Grid.ColumnSpan="2"
+              Grid.Column="0"
+              Grid.Row="2"
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Center"
+              Margin="5 5"
+              Command="{CompiledBinding ExportAsPngCmd}">
+        Export as png...
+      </Button>
+      <Button Name="ExportAsSvg"
+              Grid.ColumnSpan="2"
+              Grid.Column="2"
+              Grid.Row="2"
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Center"
+              Margin="5 5"
+              Command="{CompiledBinding ExportAsSvgCmd}">
+        Export as svg...
+      </Button>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,191 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CorrelatioM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="650"
+             x:Class="CorrelatioM.Views.FitView"
+             x:DataType="vm:FitViewModel"
+             x:CompileBindings="True">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+  <StackPanel>
+    <Expander VerticalAlignment="Top"
+          HorizontalAlignment="Stretch"
+          IsExpanded="True">
+      <Expander.Header>
+        <TextBlock Grid.Row="0"
+                        Text="Fitting"
+                        FontSize="20"
+                        HorizontalAlignment="Stretch"
+                        TextAlignment="Center"/>
+      </Expander.Header>
+      <StackPanel>
+        <Expander VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch"
+                  IsExpanded="True">
+          <Expander.Header>
+            <TextBlock TextAlignment="Center"
+                       Text="Properties"/>
+          </Expander.Header>
+          <StackPanel>
+            <Grid ColumnDefinitions="auto,*"
+                  Margin="0 0 0 5">
+              <TextBlock Grid.Row="0"
+                         Grid.Column="0"
+                         TextAlignment="Center"
+                         Text="Type of function:"
+                         VerticalAlignment="Center"
+                         Margin="3"/>
+              <ComboBox Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        Margin="3"
+                        ItemsSource="{CompiledBinding AllFunctionsName}"
+                        SelectedItem="{CompiledBinding SelectedFunctionName}"/>
+            </Grid>
+            <TextBlock TextAlignment="Left"
+                       Text="{CompiledBinding FunctionInformation}"
+                       Margin="3 8 3 8"
+                       HorizontalAlignment="Stretch"
+                       TextWrapping="Wrap"/>
+            <TextBlock TextAlignment="Left"
+                       Text="Initial guesses:"
+                       VerticalAlignment="Center"
+                       Margin="3 5 3 3"/>
+            <ListBox Margin="3 3 3 8"
+                     ItemsSource="{Binding InitialGuesses}">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <Grid ColumnDefinitions="auto,*">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="{Binding Name}"
+                               Margin="0 0 6 0"
+                               ToolTip.Tip="{Binding Description}"/>
+                    <NumericUpDown Grid.Column="1"
+                                   Value="{Binding Value}"/>
+                  </Grid>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid ColumnDefinitions="auto,*"
+                  RowDefinitions="auto, auto">
+              <TextBlock Grid.Row="0"
+                         Grid.Column="0"
+                         TextAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="Tolerance:"
+                         Margin="3"/>
+              <NumericUpDown Grid.Row="0"
+                             Grid.Column="1"
+                             Value="{CompiledBinding FitTolerance}"
+                             Margin="3"
+                             Minimum="0"
+                             FormatString="G4"/>
+              <TextBlock Grid.Row="1"
+                         Grid.Column="0"
+                         TextAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="Max iteration:"
+                         Margin="3"/>
+              <NumericUpDown Grid.Row="1"
+                             Grid.Column="1"
+                             Value="{CompiledBinding FitMaxIteration}"
+                             Margin="3"
+                             Minimum="1"/>
+            </Grid>
+            <Button Margin="3 15 3 15"
+                    HorizontalAlignment="Stretch"
+                    Command="{CompiledBinding DoFitCommand}">
+              <TextBlock TextAlignment="Center"
+                         Text="Fit"/>
+            </Button>
+            <Border BorderThickness="1"
+                    CornerRadius="3"
+                    BorderBrush="Black"
+                    Margin="3"
+                    Padding="3"
+                    IsVisible="{CompiledBinding FitInfoIsVisible}">
+              <StackPanel>
+                <TextBlock TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="Result:"
+                           FontWeight="Bold"
+                           IsVisible="{CompiledBinding FitInfoIsVisible}"
+                           Margin="3"/>
+                <SelectableTextBlock TextAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{CompiledBinding FitInformation}"
+                     IsVisible="{CompiledBinding FitInfoIsVisible}"
+                     Margin="3"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Expander>
+        <Expander VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch"
+                  IsExpanded="False">
+          <Expander.Header>
+            <TextBlock TextAlignment="Center"
+                       Text="Export"/>
+          </Expander.Header>
+          <StackPanel>
+            <Grid ColumnDefinitions="auto,*"
+                  RowDefinitions="auto,auto"
+                  Margin="0 0 0 5">
+              <TextBlock Grid.Row="0"
+                         Grid.Column="0"
+                         TextAlignment="Center"
+                         Text="Column separator:"
+                         VerticalAlignment="Center"
+                         Margin="3"/>
+              <TextBox Grid.Row="0"
+                       Grid.Column="1"
+                       TextAlignment="Center"
+                       Text="{CompiledBinding ColumnSeparator}"
+                       VerticalAlignment="Center"
+                       Margin="3"
+                       AcceptsTab="True"/>
+              <TextBlock Grid.Row="1"
+                         Grid.Column="0"
+                         TextAlignment="Center"
+                         Text="Decimal separator:"
+                         VerticalAlignment="Center"
+                         Margin="3"/>
+              <TextBox Grid.Row="1"
+                       Grid.Column="1"
+                       TextAlignment="Center"
+                       Text="{CompiledBinding DecimalSeparator}"
+                       VerticalAlignment="Center"
+                       Margin="3"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+              <ToggleSwitch Grid.Column="0"
+                            IsChecked="{CompiledBinding WithHeader}"
+                            OnContent="With header"
+                            OffContent="Without header"
+                            Margin="3"/>
+              <ToggleSwitch Grid.Column="1"
+                            IsChecked="{CompiledBinding WithInputData}"
+                            OnContent="With input data"
+                            OffContent="Without input data"
+                            Margin="3"/>
+            </Grid>
+            <Button Margin="3 15 3 15"
+                    HorizontalAlignment="Stretch"
+                    Command="{CompiledBinding ExportCommand}">
+              <TextBlock TextAlignment="Center"
+                         Text="Export..."/>
+            </Button>
+          </StackPanel>
+        </Expander>
+
+      </StackPanel>
+    </Expander>
+  </StackPanel>
+</UserControl>

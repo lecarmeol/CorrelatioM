@@ -1,0 +1,189 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CorrelatioM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="650"
+             x:Class="CorrelatioM.Views.InputDataView"
+             x:DataType="vm:InputDataViewModel"
+             x:CompileBindings="True">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+  <StackPanel>
+    <Expander VerticalAlignment="Top"
+              HorizontalAlignment="Stretch"
+              IsExpanded="True">
+      <Expander.Header>
+        <TextBlock Grid.Row="0"
+                   Text="Input Data"
+                   FontSize="20"
+                   HorizontalAlignment="Stretch"
+                   TextAlignment="Center"
+                   Margin="5"/>
+      </Expander.Header>
+      <StackPanel>
+        <Expander VerticalAlignment="Top"
+            HorizontalAlignment="Stretch"
+            IsExpanded="True">
+          <Expander.Header>
+            <TextBlock TextAlignment="Center"
+                       Text="From File"/>
+          </Expander.Header>
+          <StackPanel>
+            <Grid ColumnDefinitions="auto,*"
+                  RowDefinitions="auto,auto,auto"
+                  Margin="0">
+              <TextBlock Grid.Column="0"
+                         Grid.Row="0"
+                         Text="Column separator: "
+                         VerticalAlignment="Center"
+                         Margin="3"/>
+              <TextBox Grid.Column="1"
+                       Grid.Row="0"
+                       Text=","
+                       Margin="3"/>
+              <ToggleSwitch Grid.Column="0"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            IsChecked="{CompiledBinding WithHeader}"
+                            OnContent="With header"
+                            OffContent="Without header"
+                            Margin="3"/>
+              <TextBlock Grid.Column="0"
+                         Grid.Row="2"
+                         Text="Title (optional): "
+                         VerticalAlignment="Center"
+                         Margin="3"/>
+              <TextBox Grid.Column="1"
+                       Grid.Row="2"
+                       Margin="3"
+                       Text="{CompiledBinding OptionalTitle}"/>
+            </Grid>
+            <Button Margin="3 15 3 0"
+                    HorizontalAlignment="Stretch"
+                    Command="{CompiledBinding ImportCommand}">
+              <TextBlock TextAlignment="Center"
+                         Text="Load..."/>
+            </Button>
+          </StackPanel>
+        </Expander>
+        <Expander VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch"
+                  IsExpanded="False">
+          <Expander.Header>
+            <TextBlock TextAlignment="Center"
+                       Text="From Function"/>
+          </Expander.Header>
+          <StackPanel>
+            <Grid ColumnDefinitions="auto,*"
+                  Margin="0 0 0 5">
+              <TextBlock Grid.Row="0"
+                         Grid.Column="0"
+                         TextAlignment="Center"
+                         Text="Type of function:"
+                         VerticalAlignment="Center"
+                         Margin="3"/>
+              <ComboBox Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        Margin="3"
+                        ItemsSource="{CompiledBinding AllFunctionsName}"
+                        SelectedItem="{CompiledBinding SelectedFunctionName}"/>
+            </Grid>
+            <TextBlock TextAlignment="Left"
+                       Text="{CompiledBinding FunctionInformation}"
+                       Margin="3 8 3 8"
+                       HorizontalAlignment="Stretch"
+                       TextWrapping="Wrap"/>
+            <TextBlock TextAlignment="Left"
+                       Text="Function parameters:"
+                       VerticalAlignment="Center"
+                       Margin="3 5 3 3"/>
+            <ListBox Margin="3 3 3 8"
+                     ItemsSource="{Binding FuncParameters}">
+              <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                  <Setter Property="Padding" Value="3" />
+                </Style>
+              </ListBox.Styles>
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <Grid ColumnDefinitions="auto,*">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="{Binding Name}"
+                               Margin="0 0 6 0"
+                               ToolTip.Tip="{Binding Description}"/>
+                    <NumericUpDown Grid.Column="1"
+                                   Value="{Binding Value}"/>
+                  </Grid>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid ColumnDefinitions="auto,*,auto,*"
+                  RowDefinitions="auto,auto,auto,auto"
+                  Margin="0 5 0 5">
+              <TextBlock Grid.Row="0"
+                         Grid.Column="0"
+                         TextAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="Min X:"
+                         Margin="3"/>
+              <NumericUpDown Grid.Row="0"
+                             Grid.Column="1"
+                             Value="{CompiledBinding MinX}"
+                             Margin="3"/>
+              <TextBlock Grid.Row="0"
+                         Grid.Column="2"
+                         VerticalAlignment="Center"
+                         TextAlignment="Left"
+                         Text="Max X:"
+                         Margin="3"/>
+              <NumericUpDown Grid.Row="0"
+                             Grid.Column="3"
+                             Value="{CompiledBinding MaxX}"
+                             Margin="3"/>
+              <TextBlock Grid.Row="1"
+                         Grid.Column="0"
+                         VerticalAlignment="Center"
+                         TextAlignment="Left"
+                         Text="Nb of points:"
+                         Margin="3"/>
+              <NumericUpDown Grid.Row="1"
+                             Grid.Column="1"
+                             Value="{CompiledBinding NbOfPoints}"
+                             Margin="3"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto,auto,*"
+                  Margin="0 5 0 0">
+              <ToggleSwitch Grid.Column="0"
+                            IsChecked="{CompiledBinding WithRandomness}"
+                            OnContent="With randomness"
+                            OffContent="No randomness"
+                            Margin="3"/>
+              <TextBlock Grid.Column="1"
+                         VerticalAlignment="Center"
+                         TextAlignment="Left"
+                         Text="strength (%):"
+                         Margin="3"/>
+              <NumericUpDown Grid.Column="2"
+                             Value="{CompiledBinding RandomnessStrength}"
+                             Margin="3"/>
+            </Grid>
+
+            <Button Margin="3 15 3 0"
+                    HorizontalAlignment="Stretch"
+                    Command="{CompiledBinding GenerateCommand}">
+              <TextBlock TextAlignment="Center"
+                         Text="Generate"/>
+            </Button>
+          </StackPanel>
+        </Expander>
+      </StackPanel>
+    </Expander>
+  </StackPanel>
+</UserControl>

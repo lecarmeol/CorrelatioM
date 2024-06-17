@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CorrelatioM.ViewModels"
+             xmlns:controls="clr-namespace:CorrelatioM.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CorrelatioM.Views.MainView"
+             x:DataType="vm:MainViewModel"
+             x:CompileBindings="True">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <SplitView Name="splitView" 
+             IsPaneOpen="True"
+             DisplayMode="CompactInline"
+             OpenPaneLength="450">
+    <SplitView.Pane>
+      <ScrollViewer>
+        <StackPanel>
+          <Grid HorizontalAlignment="Stretch"
+                ColumnDefinitions="Auto, *">
+            <Button   Grid.Row="0" Grid.Column="0"
+                      Click="PaneHandler"
+                      HorizontalContentAlignment="Center"
+                      FontSize="24"
+                      Margin="3">&lt;</Button>
+            <TextBlock Name="tbConfig"
+                       Grid.Row="0" Grid.Column="1"
+                       Text="CONFIGURATION"
+                       FontSize="24"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+          </Grid>
+          <controls:InputDataView Name="block1"
+                                  DataContext="{CompiledBinding MainInputDataViewModel}"/>
+          <controls:FitView Name="block2"
+                            DataContext="{CompiledBinding MainFitDataViewModel}"/>
+        </StackPanel>
+      </ScrollViewer>
+    </SplitView.Pane>
+    <controls:GraphView DataContext="{CompiledBinding MainGraphViewModel}"/>
+  </SplitView>
+</UserControl>

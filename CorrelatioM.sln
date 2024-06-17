@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrelatioM", "CorrelatioM\CorrelatioM.csproj", "{2D0D6010-713E-41A9-B1F2-3E86FFF3C95B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE44A087-63CE-4342-822A-40DBB57E0631} = {EE44A087-63CE-4342-822A-40DBB57E0631}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrelatioM.Android", "CorrelatioM.Android\CorrelatioM.Android.csproj", "{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrelatioM.Desktop", "CorrelatioM.Desktop\CorrelatioM.Desktop.csproj", "{066E4F75-0CA3-48A9-9E38-C1FC6B9E5E25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrelatioM.Browser", "CorrelatioM.Browser\CorrelatioM.Browser.csproj", "{81A56E5D-1746-4872-B1A3-14F051668640}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RICPFitter", "..\RICPFitter\RICPFitter\RICPFitter.csproj", "{EE44A087-63CE-4342-822A-40DBB57E0631}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D0D6010-713E-41A9-B1F2-3E86FFF3C95B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D0D6010-713E-41A9-B1F2-3E86FFF3C95B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D0D6010-713E-41A9-B1F2-3E86FFF3C95B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D0D6010-713E-41A9-B1F2-3E86FFF3C95B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9919CD8-5D9F-4626-98B0-BE0A1C1369FE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{066E4F75-0CA3-48A9-9E38-C1FC6B9E5E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{066E4F75-0CA3-48A9-9E38-C1FC6B9E5E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{066E4F75-0CA3-48A9-9E38-C1FC6B9E5E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{066E4F75-0CA3-48A9-9E38-C1FC6B9E5E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81A56E5D-1746-4872-B1A3-14F051668640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81A56E5D-1746-4872-B1A3-14F051668640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81A56E5D-1746-4872-B1A3-14F051668640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81A56E5D-1746-4872-B1A3-14F051668640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE44A087-63CE-4342-822A-40DBB57E0631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE44A087-63CE-4342-822A-40DBB57E0631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE44A087-63CE-4342-822A-40DBB57E0631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE44A087-63CE-4342-822A-40DBB57E0631}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4D88B69-BBA8-410E-B1E1-7BD9D3F6E6E3}
+	EndGlobalSection
+EndGlobal
